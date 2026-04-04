@@ -19,12 +19,59 @@ const CATS = [
 // Gemiddelde prijzen (€) per supermarkt, NL 2024-2025
 // ══════════════════════════════════════════════════════
 const SUPERMARKETS = [
-  { id: 'ah',    label: 'Albert Heijn', color: '#00A0E2' },
-  { id: 'jumbo', label: 'Jumbo',        color: '#FDB913' },
-  { id: 'plus',  label: 'Plus',         color: '#E4202D' },
-  { id: 'lidl',  label: 'Lidl',         color: '#0050AA' },
-  { id: 'aldi',  label: 'Aldi',         color: '#1B4F9B' },
+  { id: 'ah',    label: 'Albert Heijn', color: '#00A0E2', offset: 1.00, live: true  },
+  { id: 'jumbo', label: 'Jumbo',        color: '#FDB913', offset: 0.93, live: true  },
+  { id: 'plus',  label: 'Plus',         color: '#E4202D', offset: 0.96, live: false },
+  { id: 'lidl',  label: 'Lidl',         color: '#0050AA', offset: 0.80, live: false },
+  { id: 'aldi',  label: 'Aldi',         color: '#1B4F9B', offset: 0.77, live: false },
+  { id: 'dirk',  label: 'Dirk',         color: '#E31E24', offset: 0.82, live: false },
+  { id: 'vomar', label: 'Vomar',        color: '#F58220', offset: 0.78, live: false },
 ];
+
+// URL van jouw Cloudflare Worker (zie worker.js voor setup instructies)
+const WORKER_URL = '';
+
+const CACHE_TTL = 24 * 60 * 60 * 1000;
+
+function getCachedPrice(sm, name) {
+  try {
+    const raw = localStorage.getItem(`${sm}p_${name}`);
+    if (!raw) return null;
+    const { price, ts } = JSON.parse(raw);
+    return Date.now() - ts < CACHE_TTL ? price : null;
+  } catch { return null; }
+}
+
+function setCachedPrice(sm, name, price) {
+  localStorage.setItem(`${sm}p_${name}`, JSON.stringify({ price, ts: Date.now() }));
+}
+
+async function fetchLivePrice(sm, name) {
+  const cached = getCachedPrice(sm, name);
+  if (cached !== null) return cached;
+  if (!WORKER_URL) return null;
+  try {
+    const res = await fetch(`${WORKER_URL}?q=${encodeURIComponent(name)}&sm=${sm}`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (data.price) { setCachedPrice(sm, name, data.price); return data.price; }
+    return null;
+  } catch { return null; }
+}
+
+async function fetchLivePrices(items) {
+  if (!WORKER_URL) return { ah: {}, jumbo: {} };
+  const names = [...new Set(items.filter(i => !i.checked).map(i => i.name))];
+  const result = { ah: {}, jumbo: {} };
+  for (let i = 0; i < names.length; i += 6) {
+    const batch = names.slice(i, i + 6);
+    await Promise.all(batch.flatMap(name => [
+      fetchLivePrice('ah',    name).then(p => { if (p) result.ah[name]    = p; }),
+      fetchLivePrice('jumbo', name).then(p => { if (p) result.jumbo[name] = p; }),
+    ]));
+  }
+  return result;
+}
 
 // keywords: lowercase woorden die in de itemnaam kunnen voorkomen
 // prijzen per eenheid (stuk / 500g / 1L afhankelijk van product)
@@ -139,28 +186,46 @@ function matchPrice(name) {
 }
 
 // Bereken welke supermarkt het voordeligst is voor de lijst
-function calcPriceAdvice(items) {
+// livePrices = { ah: {name: price}, jumbo: {name: price} }
+function calcPriceAdvice(items, livePrices = { ah: {}, jumbo: {} }) {
   const totals = {};
   SUPERMARKETS.forEach(sm => { totals[sm.id] = 0; });
-  let matched = 0;
+  let matched = 0, liveCount = 0;
 
   items.filter(i => !i.checked).forEach(item => {
-    const entry = matchPrice(item.name);
-    if (!entry) return;
+    const liveAH    = livePrices.ah[item.name];
+    const liveJumbo = livePrices.jumbo[item.name];
+    const entry     = matchPrice(item.name);
+    if (!liveAH && !entry) return;
     matched++;
+    if (liveAH) liveCount++;
+
     const qty = item.unit === 'gram'
       ? Math.max(1, Math.round((item.qty || 1) / 500))
       : Math.max(1, item.qty || 1);
-    SUPERMARKETS.forEach(sm => { totals[sm.id] += entry[sm.id] * qty; });
+
+    const ahBase = liveAH ?? entry.ah;
+
+    SUPERMARKETS.forEach(sm => {
+      let price;
+      if (sm.id === 'ah') {
+        price = ahBase;
+      } else if (sm.id === 'jumbo') {
+        price = liveJumbo ?? (ahBase * sm.offset);
+      } else if (!liveAH && entry && entry[sm.id] !== undefined) {
+        price = entry[sm.id];
+      } else {
+        price = ahBase * sm.offset;
+      }
+      totals[sm.id] += price * qty;
+    });
   });
 
   if (matched < 2) return null;
-
   const ranked = SUPERMARKETS
     .map(sm => ({ ...sm, total: totals[sm.id] }))
     .sort((a, b) => a.total - b.total);
-
-  return { ranked, matched, total: items.filter(i => !i.checked).length };
+  return { ranked, matched, total: items.filter(i => !i.checked).length, liveCount, isLive: liveCount > 0 };
 }
 
 // ══════════════════════════════════════════════════════
@@ -478,17 +543,25 @@ function renderList() {
 // ══════════════════════════════════════════════════════
 let _lastAdvice = null;
 
-function renderPriceAdvice(list) {
+async function renderPriceAdvice(list) {
   const bar  = document.getElementById('priceBar');
   const name = document.getElementById('priceBarName');
 
-  const advice = calcPriceAdvice(list.items);
-  _lastAdvice  = advice;
-
-  if (!advice) { bar.style.display = 'none'; return; }
-
-  name.textContent = advice.ranked[0].label;
+  // Toon direct statische schatting
+  const staticAdvice = calcPriceAdvice(list.items);
+  _lastAdvice = staticAdvice;
+  if (!staticAdvice) { bar.style.display = 'none'; return; }
+  name.textContent = staticAdvice.ranked[0].label;
   bar.style.display = '';
+
+  // Haal live prijzen op op achtergrond
+  if (!WORKER_URL) return;
+  const livePrices = await fetchLivePrices(list.items);
+  const liveAdvice = calcPriceAdvice(list.items, livePrices);
+  if (liveAdvice) {
+    _lastAdvice = liveAdvice;
+    name.textContent = liveAdvice.ranked[0].label + (liveAdvice.isLive ? ' ●' : '');
+  }
 }
 
 function openPriceModal() {
@@ -501,18 +574,21 @@ function openPriceModal() {
   const rows = advice.ranked.map((sm, i) => `
     <div class="pm-row ${i === 0 ? 'pm-row--best' : ''}">
       <span class="pm-rank">${i === 0 ? '🏆' : i + 1}</span>
-      <span class="pm-label">${sm.label}</span>
-      <span class="pm-amount">€\u00A0${sm.total.toFixed(2)}</span>
+      <span class="pm-label">${esc(sm.label)}</span>
+      <span class="pm-amount">€\u00A0${sm.total.toFixed(2)}${sm.live && advice.isLive ? '<small class="pm-live"> live</small>' : '<small class="pm-est"> ~</small>'}</span>
     </div>`).join('');
 
   document.getElementById('priceModalContent').innerHTML = `
     <div class="pm-banner">
-      Meest voordelig: <strong>${best.label}</strong>
-      ${savings > 0.50 ? `<br>Bespaar tot <strong>€\u00A0${savings.toFixed(2)}</strong> t.o.v. ${advice.ranked[advice.ranked.length-1].label}` : ''}
+      Meest voordelig: <strong>${esc(best.label)}</strong>
+      ${savings > 0.50 ? `<br>Bespaar tot <strong>€\u00A0${savings.toFixed(2)}</strong> t.o.v. ${esc(advice.ranked[advice.ranked.length-1].label)}` : ''}
     </div>
     <div class="pm-rows">${rows}</div>
-    <p class="pm-meta">${advice.matched} van ${advice.total} items herkend in de database</p>
-    <p class="pm-disclaimer">Gebaseerd op gemiddelde NL supermarktprijzen 2025. Actuele prijzen kunnen afwijken.</p>`;
+    <p class="pm-meta">${advice.matched} van ${advice.total} items herkend${advice.isLive ? ` · ${advice.liveCount} met live prijs` : ''}</p>
+    <p class="pm-disclaimer">${advice.isLive
+      ? 'AH &amp; Jumbo: live prijzen. Plus, Lidl, Aldi, Dirk, Vomar: schatting op basis van gemiddelden 2025.'
+      : 'Gebaseerd op gemiddelde NL supermarktprijzen 2025. Actuele prijzen kunnen afwijken.'
+    }</p>`;
 
   document.getElementById('priceModal').style.display = 'flex';
 }
