@@ -3,29 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#1DB954">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Mandje">
   <link rel="manifest" href="manifest.json">
   <title>Mandje</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <div id="app">
 
-  <!-- ═══════════════════════════════════ SPLASH ══════════════════════════════════ -->
-  <div id="screen-splash" class="screen">
+  <!-- ══════════════════════ SPLASH ══════════════════════ -->
+  <div id="screen-splash" class="screen is-active">
     <div class="splash-inner">
-      <div class="splash-logo">
-        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="80" height="80" rx="18" fill="#34C759"/>
-          <path d="M20 26h4l6 22h20l6-22h4" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M30 26l4-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
-          <path d="M50 26l-4-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="33" cy="52" r="2.5" fill="white"/>
-          <circle cx="47" cy="52" r="2.5" fill="white"/>
+      <div class="splash-logo-wrap">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 14h5l8 28h24l8-28h5" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 14l5-10" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M42 14l-5-10" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="27" cy="48" r="3" fill="white"/>
+          <circle cx="37" cy="48" r="3" fill="white"/>
         </svg>
       </div>
       <div class="splash-name">Mandje</div>
@@ -33,71 +31,73 @@
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════ HOME ════════════════════════════════════ -->
-  <div id="screen-home" class="screen hidden">
+  <!-- ══════════════════════ HOME ══════════════════════ -->
+  <div id="screen-home" class="screen">
     <header class="nav-bar" id="homeNav">
       <div class="nav-large-title">Lijsten</div>
       <div class="nav-bar-inner">
+        <span style="min-width:72px"></span>
         <span class="nav-title-small">Lijsten</span>
         <button class="nav-btn-right" id="btnBasisFromHome">Basislijst</button>
       </div>
     </header>
 
-    <main class="scroll-area top-nav" id="homeScroll">
+    <div class="scroll-area" id="homeScroll">
       <div id="homeEmpty" class="empty-home" style="display:none">
         <div class="empty-icon">🛒</div>
-        <p class="empty-title">Geen lijsten</p>
-        <p class="empty-sub">Tik op + om een nieuwe lijst te maken.</p>
+        <p class="empty-title">Nog geen lijsten</p>
+        <p class="empty-sub">Tik op + om je eerste boodschappenlijst aan te maken.</p>
       </div>
-      <div class="list-section" id="homeListsSection" style="display:none">
-        <div class="section-label">Mijn lijsten</div>
-        <div class="ios-list" id="homeLists"></div>
+      <div class="home-section" id="homeSection" style="display:none">
+        <div class="section-eyebrow">Mijn lijsten</div>
+        <div class="list-cards" id="homeCards"></div>
       </div>
-    </main>
+    </div>
 
     <button class="fab" id="btnNewList">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
     </button>
   </div>
 
-  <!-- ═══════════════════════════════════ LIST DETAIL ══════════════════════════════ -->
-  <div id="screen-list" class="screen hidden slide-right">
+  <!-- ══════════════════════ LIST DETAIL ══════════════════════ -->
+  <div id="screen-list" class="screen">
     <header class="nav-bar" id="listNav">
       <div class="nav-large-title" id="listLargeTitle">Lijst</div>
       <div class="nav-bar-inner">
         <button class="nav-btn-left" id="btnBack">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="16"><polyline points="15 18 9 12 15 6"/></svg>
+          <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.5" width="8" height="14"><polyline points="10 18 2 10 10 2"/></svg>
           Lijsten
         </button>
-        <span class="nav-title-small" id="listTitleSmall">Lijst</span>
+        <span class="nav-title-small" id="listSmallTitle">Lijst</span>
         <button class="nav-btn-right" id="btnBasisFromList">Basis</button>
       </div>
     </header>
 
-    <main class="scroll-area top-nav" id="listScroll">
+    <div class="scroll-area" id="listScroll">
 
-      <!-- Add item area -->
-      <div class="add-card">
-        <div class="add-input-row">
-          <div class="add-input-wrap">
+      <!-- Add area -->
+      <div class="add-area">
+        <div class="add-row">
+          <div class="input-wrap">
             <input id="itemInput" type="text" placeholder="Item toevoegen…" autocomplete="off" autocorrect="off" spellcheck="false">
-            <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display:none"></div>
+            <div id="acDropdown" class="autocomplete-dropdown" style="display:none"></div>
           </div>
-          <select id="itemCategory" class="cat-select">
-            <option value="">Categorie</option>
-          </select>
+          <select id="itemCat" class="cat-select"></select>
         </div>
 
-        <!-- Quantity stage (shown after item selected) -->
-        <div id="qtyStage" class="qty-stage" style="display:none">
-          <div class="qty-item-name" id="qtyItemName"></div>
-          <div class="qty-controls">
-            <button class="qty-btn" id="qtyMinus">−</button>
-            <input class="qty-input" id="qtyValue" type="number" value="1" min="1">
-            <button class="qty-btn" id="qtyPlus">+</button>
+        <!-- Qty stage -->
+        <div id="qtyStage" style="display:none" class="qty-stage">
+          <div class="qty-label">Hoeveel?</div>
+          <div class="qty-item-name" id="qtyName"></div>
+          <div class="qty-row">
+            <div class="qty-stepper">
+              <button class="qty-btn" id="qtyMin">−</button>
+              <input class="qty-number" id="qtyVal" type="number" value="1" min="1">
+              <button class="qty-btn" id="qtyPlus">+</button>
+            </div>
             <div class="qty-unit-toggle">
-              <button class="unit-btn active" id="btnStuks" data-unit="stuks">stuks</button>
-              <button class="unit-btn" id="btnGram" data-unit="gram">gram</button>
+              <button class="unit-btn active" id="btnStuks">stuks</button>
+              <button class="unit-btn" id="btnGram">gram</button>
             </div>
           </div>
           <div class="qty-actions">
@@ -108,87 +108,77 @@
       </div>
 
       <!-- Progress -->
-      <div class="progress-section" id="progressSection">
-        <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+      <div class="progress-section">
+        <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
         <span id="progressLabel" class="progress-label">0 / 0</span>
       </div>
 
-      <!-- Items -->
+      <!-- Items by category -->
       <div id="listItems"></div>
 
-      <!-- New week -->
-      <div class="footer-actions">
+      <div class="list-footer">
         <button class="footer-btn" id="btnNewWeek">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-          Nieuwe week
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          Nieuwe week starten
         </button>
       </div>
 
-    </main>
+    </div>
   </div>
 
-  <!-- ═══════════════════════════════════ BASIS SHEET ══════════════════════════════ -->
-  <div id="screen-basis" class="bottom-sheet hidden">
+  <!-- ══════════════════════ BASIS SHEET ══════════════════════ -->
+  <div id="basisSheet" class="bottom-sheet">
     <div class="sheet-backdrop" id="sheetBackdrop"></div>
-    <div class="sheet-card">
+    <div class="sheet-panel">
       <div class="sheet-handle"></div>
-      <div class="sheet-header">
-        <h2 class="sheet-title">Basislijst</h2>
-        <button class="sheet-close" id="btnBasisClose">Klaar</button>
+      <div class="sheet-head">
+        <div class="sheet-title">Basislijst</div>
+        <button class="sheet-done" id="btnBasisClose">Klaar</button>
       </div>
-      <p class="sheet-hint">Vink af = tijdelijk overslaan deze week. Prullenbak = permanent verwijderen.</p>
-
-      <div class="add-card flat">
-        <div class="add-input-row">
-          <input id="basisInput" type="text" placeholder="Item aan basislijst…" autocomplete="off" autocorrect="off" spellcheck="false">
-          <select id="basisCategory" class="cat-select">
-            <option value="">Categorie</option>
-          </select>
-          <button class="add-btn" id="btnBasisAdd">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-        </div>
+      <p class="sheet-hint">Vinkje = tijdelijk overslaan deze week. Prullenbak = permanent verwijderen.</p>
+      <div class="sheet-add">
+        <input id="basisInput" type="text" placeholder="Item toevoegen aan basis…" autocomplete="off">
+        <select id="basisCat" class="cat-select"></select>
+        <button class="add-btn" id="btnBasisAdd">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
       </div>
-
       <div class="sheet-scroll">
         <div id="basisItems"></div>
-        <div id="basisEmpty" class="empty-inline" style="display:none">Nog geen items op de basislijst.</div>
+        <div id="basisEmpty" class="sheet-empty" style="display:none">Nog geen items. Voeg vaste boodschappen toe.</div>
       </div>
     </div>
   </div>
 
-  <!-- Modal confirm new week -->
-  <div id="modalNewWeek" class="modal-overlay" style="display:none">
-    <div class="modal-card">
+  <!-- ══════════════════════ MODAL: nieuwe week ══════════════════════ -->
+  <div id="modalWeek" class="modal-overlay" style="display:none">
+    <div class="modal-sheet">
       <h3>Nieuwe week starten?</h3>
-      <p>De afgevinkte items verdwijnen. De basislijst wordt opnieuw geladen (inclusief tijdelijk overgeslagen items).</p>
+      <p>Afgevinkte items verdwijnen. De basislijst wordt opnieuw geladen, inclusief tijdelijk overgeslagen items.</p>
       <div class="modal-btns">
-        <button class="modal-cancel" id="modalCancel">Annuleer</button>
-        <button class="modal-confirm" id="modalConfirm">Start nieuwe week</button>
+        <button class="btn-secondary" id="btnWeekCancel">Annuleer</button>
+        <button class="btn-primary" id="btnWeekConfirm">Nieuwe week</button>
       </div>
     </div>
   </div>
 
-  <!-- Modal: new list name -->
-  <div id="modalNewList" class="modal-overlay" style="display:none">
-    <div class="modal-card">
+  <!-- ══════════════════════ MODAL: nieuwe lijst ══════════════════════ -->
+  <div id="modalList" class="modal-overlay" style="display:none">
+    <div class="modal-sheet">
       <h3>Nieuwe lijst</h3>
       <input id="newListName" class="modal-input" type="text" placeholder="Naam (bijv. Week 14, IKEA…)" maxlength="40">
-      <div class="modal-check-wrap">
-        <label class="modal-check-label">
-          <input type="checkbox" id="newListLoadBase" checked>
-          <span>Basislijst laden</span>
-        </label>
-      </div>
+      <label class="modal-check">
+        <input type="checkbox" id="loadBase" checked>
+        <span>Basislijst laden</span>
+      </label>
       <div class="modal-btns">
-        <button class="modal-cancel" id="btnNewListCancel">Annuleer</button>
-        <button class="modal-confirm" id="btnNewListConfirm">Aanmaken</button>
+        <button class="btn-secondary" id="btnListCancel">Annuleer</button>
+        <button class="btn-primary" id="btnListConfirm">Aanmaken</button>
       </div>
     </div>
   </div>
 
 </div>
-
 <script src="app.js"></script>
 </body>
 </html>
