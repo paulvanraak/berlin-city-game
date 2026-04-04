@@ -474,43 +474,47 @@ function renderList() {
 }
 
 // ══════════════════════════════════════════════════════
-// RENDER PRIJSADVIES
+// RENDER PRIJSADVIES — floating sticky bar + modal
 // ══════════════════════════════════════════════════════
+let _lastAdvice = null;
+
 function renderPriceAdvice(list) {
-  // Remove old advice card if present
-  const old = document.getElementById('priceAdviceCard');
-  if (old) old.remove();
+  const bar  = document.getElementById('priceBar');
+  const name = document.getElementById('priceBarName');
 
   const advice = calcPriceAdvice(list.items);
+  _lastAdvice  = advice;
+
+  if (!advice) { bar.style.display = 'none'; return; }
+
+  name.textContent = advice.ranked[0].label;
+  bar.style.display = '';
+}
+
+function openPriceModal() {
+  const advice = _lastAdvice;
   if (!advice) return;
 
   const best    = advice.ranked[0];
   const savings = advice.ranked[advice.ranked.length - 1].total - best.total;
 
-  const card = document.createElement('div');
-  card.id = 'priceAdviceCard';
-  card.className = 'price-advice-card';
-
   const rows = advice.ranked.map((sm, i) => `
-    <div class="price-row ${i === 0 ? 'price-row--best' : ''}">
-      <span class="price-rank">${i === 0 ? '🏆' : `${i + 1}`}</span>
-      <span class="price-label">${sm.label}</span>
-      <span class="price-amount">€ ${sm.total.toFixed(2)}</span>
+    <div class="pm-row ${i === 0 ? 'pm-row--best' : ''}">
+      <span class="pm-rank">${i === 0 ? '🏆' : i + 1}</span>
+      <span class="pm-label">${sm.label}</span>
+      <span class="pm-amount">€\u00A0${sm.total.toFixed(2)}</span>
     </div>`).join('');
 
-  card.innerHTML = `
-    <div class="price-header">
-      <span class="price-title">Prijsadvies</span>
-      <span class="price-meta">${advice.matched} van ${advice.total} items herkend</span>
-    </div>
-    <div class="price-best-banner">
+  document.getElementById('priceModalContent').innerHTML = `
+    <div class="pm-banner">
       Meest voordelig: <strong>${best.label}</strong>
-      ${savings > 0.50 ? ` — bespaar tot <strong>€ ${savings.toFixed(2)}</strong>` : ''}
+      ${savings > 0.50 ? `<br>Bespaar tot <strong>€\u00A0${savings.toFixed(2)}</strong> t.o.v. ${advice.ranked[advice.ranked.length-1].label}` : ''}
     </div>
-    <div class="price-rows">${rows}</div>
-    <p class="price-disclaimer">Gebaseerd op gemiddelde Nederlandse supermarktprijzen 2025. Actuele prijzen kunnen afwijken.</p>`;
+    <div class="pm-rows">${rows}</div>
+    <p class="pm-meta">${advice.matched} van ${advice.total} items herkend in de database</p>
+    <p class="pm-disclaimer">Gebaseerd op gemiddelde NL supermarktprijzen 2025. Actuele prijzen kunnen afwijken.</p>`;
 
-  document.getElementById('listItems').appendChild(card);
+  document.getElementById('priceModal').style.display = 'flex';
 }
 
 // ══════════════════════════════════════════════════════
@@ -835,6 +839,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('basisInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('btnBasisAdd').click();
+  });
+
+  // ── Prijsbalk + modal ─────────────────────────────────
+  document.getElementById('btnPriceBar').addEventListener('click', openPriceModal);
+  document.getElementById('btnPriceClose').addEventListener('click', () => {
+    document.getElementById('priceModal').style.display = 'none';
+  });
+  document.getElementById('priceModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) e.currentTarget.style.display = 'none';
   });
 });
 
