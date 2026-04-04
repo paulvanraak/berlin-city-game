@@ -1,1 +1,110 @@
-<!DOCTYPE html><html><head><title>Berlin City Game</title></head><body><h1>Welcome to Berlin City Game</h1></body></html>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="theme-color" content="#2d6a4f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Boodschappen">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <title>Boodschappen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <h1 class="header-title">Boodschappen</h1>
+      <div class="header-actions">
+        <button id="btnNewWeek" class="btn-icon" title="Nieuwe week">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        </button>
+        <button id="btnManage" class="btn-icon" title="Basislijst beheren">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Tab bar -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="week">Weeklijst</button>
+      <button class="tab" data-tab="basis">Basislijst</button>
+    </nav>
+  </header>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <!-- WEEKLIJST TAB -->
+    <section id="tabWeek" class="tab-content active">
+
+      <!-- Quick add -->
+      <div class="quick-add">
+        <input id="quickInput" type="text" placeholder="Item toevoegen..." autocomplete="off" autocorrect="off">
+        <select id="quickCategory">
+          <option value="">Categorie...</option>
+        </select>
+        <button id="btnQuickAdd" class="btn-add">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="progress-wrap">
+        <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+        <span id="progressLabel" class="progress-label">0 / 0</span>
+      </div>
+
+      <!-- List per category -->
+      <div id="weekList" class="item-list"></div>
+
+      <div id="weekEmpty" class="empty-state" style="display:none">
+        <p>Lijst is leeg.</p>
+        <p>Voeg items toe of laad de basislijst.</p>
+      </div>
+
+    </section>
+
+    <!-- BASISLIJST TAB -->
+    <section id="tabBasis" class="tab-content">
+
+      <div class="quick-add">
+        <input id="basisInput" type="text" placeholder="Item toevoegen aan basis..." autocomplete="off" autocorrect="off">
+        <select id="basisCategory">
+          <option value="">Categorie...</option>
+        </select>
+        <button id="btnBasisAdd" class="btn-add">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+      </div>
+
+      <p class="basis-hint">Vink items tijdelijk af om ze deze week over te slaan. Verwijder om permanent weg te halen.</p>
+
+      <div id="basisList" class="item-list"></div>
+
+      <div id="basisEmpty" class="empty-state" style="display:none">
+        <p>Basislijst is leeg.</p>
+        <p>Voeg je vaste items toe.</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Modal: Nieuwe week -->
+  <div id="modalNewWeek" class="modal-overlay" style="display:none">
+    <div class="modal">
+      <h2>Nieuwe week</h2>
+      <p>Dit reset de weeklijst: alle afgevinkte items worden verwijderd, de basislijst wordt opnieuw geladen (inclusief tijdelijk overgeslagen items).</p>
+      <div class="modal-actions">
+        <button id="btnNewWeekCancel" class="btn-secondary">Annuleren</button>
+        <button id="btnNewWeekConfirm" class="btn-primary">Nieuwe week starten</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
