@@ -1055,6 +1055,25 @@ html, body {
 }
 .pm-row--best .pm-amount { color: var(--green); }
 
+.pm-live {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: .65rem;
+  font-weight: 600;
+  color: var(--green);
+  background: #e6f9ee;
+  border-radius: 4px;
+  padding: 1px 4px;
+  vertical-align: middle;
+}
+.pm-est {
+  display: inline-block;
+  margin-left: 3px;
+  font-size: .65rem;
+  color: var(--t3);
+  vertical-align: middle;
+}
+
 .pm-meta {
   font-size: .78rem;
   color: var(--t2);
