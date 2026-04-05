@@ -1174,14 +1174,66 @@ html, body {
 
 .recipe-arrow { color: var(--t3); flex-shrink: 0; }
 
+.recipe-detail-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.recipe-detail-header {
+  padding: 0 16px 12px;
+}
+
 .recipe-detail-title {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 800;
   letter-spacing: -.2px;
   color: var(--t1);
-  padding: 0 16px 14px;
   line-height: 1.35;
+  margin-bottom: 6px;
 }
+
+.recipe-detail-meta {
+  font-size: .8rem;
+  color: var(--t2);
+  margin-bottom: 8px;
+}
+
+.recipe-diet-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.recipe-diet-label {
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--green);
+  background: color-mix(in srgb, var(--green) 12%, transparent);
+  border-radius: 20px;
+  padding: 2px 9px;
+}
+
+.recipe-ing-header {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--t2);
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  padding: 0 16px 6px;
+}
+
+.recipe-source-link {
+  display: block;
+  font-size: .82rem;
+  color: var(--blue);
+  text-decoration: none;
+  padding: 10px 16px 6px;
+}
+.recipe-source-link:hover { text-decoration: underline; }
 
 .recipe-ing-list {
   padding: 0 16px;

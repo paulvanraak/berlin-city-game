@@ -1285,8 +1285,9 @@ const DEMO_RECIPES = [
   {
     title: 'Pasta Carbonara',
     dietTags: ['vlees'],
-    image: '',
-    readyInMinutes: 25,
+    image: '', yield: 4, readyInMinutes: 25,
+    cuisineType: 'Italian', dishType: 'Main course',
+    calories: 2200, dietLabels: [],
     extendedIngredients: [
       { name: 'Spaghetti',     amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
       { name: 'Spek',          amount: 150, unit: 'g',    measures: { metric: { amount: 150, unitShort: 'g' } } },
@@ -1298,8 +1299,9 @@ const DEMO_RECIPES = [
   {
     title: 'Kipfilet met groenten',
     dietTags: ['vlees'],
-    image: '',
-    readyInMinutes: 35,
+    image: '', yield: 4, readyInMinutes: 35,
+    cuisineType: 'Dutch', dishType: 'Main course',
+    calories: 1760, dietLabels: ['Glutenvrij'],
     extendedIngredients: [
       { name: 'Kipfilet',      amount: 500, unit: 'g',    measures: { metric: { amount: 500, unitShort: 'g' } } },
       { name: 'Paprika',       amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
@@ -1312,8 +1314,9 @@ const DEMO_RECIPES = [
   {
     title: 'Tomatensoep',
     dietTags: ['vega'],
-    image: '',
-    readyInMinutes: 30,
+    image: '', yield: 4, readyInMinutes: 30,
+    cuisineType: 'Dutch', dishType: 'Soup',
+    calories: 680, dietLabels: ['Vegetarisch', 'Glutenvrij'],
     extendedIngredients: [
       { name: 'Tomaten',       amount: 800, unit: 'g',    measures: { metric: { amount: 800, unitShort: 'g' } } },
       { name: 'Ui',            amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
@@ -1326,8 +1329,9 @@ const DEMO_RECIPES = [
   {
     title: 'Gehaktballen in tomatensaus',
     dietTags: ['vlees'],
-    image: '',
-    readyInMinutes: 40,
+    image: '', yield: 4, readyInMinutes: 40,
+    cuisineType: 'Dutch', dishType: 'Main course',
+    calories: 1980, dietLabels: [],
     extendedIngredients: [
       { name: 'Gehakt',        amount: 500, unit: 'g',    measures: { metric: { amount: 500, unitShort: 'g' } } },
       { name: 'Ui',            amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
@@ -1340,8 +1344,9 @@ const DEMO_RECIPES = [
   {
     title: 'Griekse salade',
     dietTags: ['vega'],
-    image: '',
-    readyInMinutes: 15,
+    image: '', yield: 4, readyInMinutes: 15,
+    cuisineType: 'Mediterranean', dishType: 'Salad',
+    calories: 760, dietLabels: ['Vegetarisch', 'Glutenvrij'],
     extendedIngredients: [
       { name: 'Komkommer',     amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
       { name: 'Tomaten',       amount: 300, unit: 'g',    measures: { metric: { amount: 300, unitShort: 'g' } } },
@@ -1353,8 +1358,9 @@ const DEMO_RECIPES = [
   {
     title: 'Roerbakschotel met noedels',
     dietTags: ['vlees'],
-    image: '',
-    readyInMinutes: 20,
+    image: '', yield: 4, readyInMinutes: 20,
+    cuisineType: 'Asian', dishType: 'Main course',
+    calories: 1540, dietLabels: [],
     extendedIngredients: [
       { name: 'Kipfilet',      amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
       { name: 'Pasta',         amount: 250, unit: 'g',    measures: { metric: { amount: 250, unitShort: 'g' } } },
@@ -1367,8 +1373,9 @@ const DEMO_RECIPES = [
   {
     title: 'Stamppot boerenkool',
     dietTags: ['vlees'],
-    image: '',
-    readyInMinutes: 45,
+    image: '', yield: 4, readyInMinutes: 45,
+    cuisineType: 'Dutch', dishType: 'Main course',
+    calories: 1760, dietLabels: ['Glutenvrij'],
     extendedIngredients: [
       { name: 'Aardappelen',   amount: 800, unit: 'g',    measures: { metric: { amount: 800, unitShort: 'g' } } },
       { name: 'Boerenkool',    amount: 500, unit: 'g',    measures: { metric: { amount: 500, unitShort: 'g' } } },
@@ -1380,8 +1387,9 @@ const DEMO_RECIPES = [
   {
     title: 'Lasagne',
     dietTags: ['vlees'],
-    image: '',
-    readyInMinutes: 60,
+    image: '', yield: 4, readyInMinutes: 60,
+    cuisineType: 'Italian', dishType: 'Main course',
+    calories: 2380, dietLabels: [],
     extendedIngredients: [
       { name: 'Gehakt',        amount: 500, unit: 'g',    measures: { metric: { amount: 500, unitShort: 'g' } } },
       { name: 'Lasagnebladen', amount: 250, unit: 'g',    measures: { metric: { amount: 250, unitShort: 'g' } } },
@@ -1396,8 +1404,9 @@ const DEMO_RECIPES = [
   {
     title: 'Zalm met citroen en rijst',
     dietTags: ['vis'],
-    image: '',
-    readyInMinutes: 30,
+    image: '', yield: 4, readyInMinutes: 30,
+    cuisineType: 'Mediterranean', dishType: 'Main course',
+    calories: 1680, dietLabels: ['Glutenvrij'],
     extendedIngredients: [
       { name: 'Zalm',          amount: 600, unit: 'g',    measures: { metric: { amount: 600, unitShort: 'g' } } },
       { name: 'Rijst',         amount: 300, unit: 'g',    measures: { metric: { amount: 300, unitShort: 'g' } } },
@@ -1410,8 +1419,9 @@ const DEMO_RECIPES = [
   {
     title: 'Pasta met tonijn',
     dietTags: ['vis'],
-    image: '',
-    readyInMinutes: 20,
+    image: '', yield: 4, readyInMinutes: 20,
+    cuisineType: 'Italian', dishType: 'Main course',
+    calories: 1560, dietLabels: [],
     extendedIngredients: [
       { name: 'Pasta',         amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
       { name: 'Tonijn',        amount: 2,   unit: 'blik', measures: { metric: { amount: 280, unitShort: 'g' } } },
@@ -1425,7 +1435,10 @@ const DEMO_RECIPES = [
     title: 'Groente curry',
     dietTags: ['vega'],
     image: '',
-    readyInMinutes: 30,
+    yield: 4, readyInMinutes: 30,
+    cuisineType: 'Indian', dishType: 'Main course',
+    calories: 1480,
+    dietLabels: ['Vegetarisch', 'Glutenvrij'],
     extendedIngredients: [
       { name: 'Rijst',         amount: 300, unit: 'g',    measures: { metric: { amount: 300, unitShort: 'g' } } },
       { name: 'Kokosmelk',     amount: 400, unit: 'ml',   measures: { metric: { amount: 400, unitShort: 'ml' } } },
@@ -1434,6 +1447,432 @@ const DEMO_RECIPES = [
       { name: 'Ui',            amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
       { name: 'Tomaten blik',  amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
       { name: 'Knoflook',      amount: 3,   unit: 'stuks', measures: { metric: { amount: 3,   unitShort: 'stuks' } } },
+    ],
+  },
+  // ── Nederlandsche klassiekers ─────────────────────────
+  {
+    title: 'Erwtensoep',
+    dietTags: ['vlees'],
+    image: '', yield: 4, readyInMinutes: 90,
+    cuisineType: 'Dutch', dishType: 'Soup',
+    calories: 1560, dietLabels: [],
+    extendedIngredients: [
+      { name: 'Spliterwten',   amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Rookworst',     amount: 200, unit: 'g',    measures: { metric: { amount: 200, unitShort: 'g' } } },
+      { name: 'Spek',          amount: 150, unit: 'g',    measures: { metric: { amount: 150, unitShort: 'g' } } },
+      { name: 'Prei',          amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
+      { name: 'Knolselderij',  amount: 200, unit: 'g',    measures: { metric: { amount: 200, unitShort: 'g' } } },
+      { name: 'Ui',            amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
+      { name: 'Bouillon',      amount: 1.5, unit: 'l',    measures: { metric: { amount: 1500, unitShort: 'ml' } } },
+    ],
+  },
+  {
+    title: 'Hutspot met klapstuk',
+    dietTags: ['vlees'],
+    image: '', yield: 4, readyInMinutes: 75,
+    cuisineType: 'Dutch', dishType: 'Main course',
+    calories: 1820, dietLabels: [],
+    extendedIngredients: [
+      { name: 'Aardappelen',   amount: 800, unit: 'g',    measures: { metric: { amount: 800, unitShort: 'g' } } },
+      { name: 'Wortelen',      amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Ui',            amount: 3,   unit: 'stuks', measures: { metric: { amount: 3,   unitShort: 'stuks' } } },
+      { name: 'Klapstuk',      amount: 600, unit: 'g',    measures: { metric: { amount: 600, unitShort: 'g' } } },
+      { name: 'Boter',         amount: 40,  unit: 'g',    measures: { metric: { amount: 40,  unitShort: 'g' } } },
+    ],
+  },
+  {
+    title: 'Hachee met rode kool',
+    dietTags: ['vlees'],
+    image: '', yield: 4, readyInMinutes: 120,
+    cuisineType: 'Dutch', dishType: 'Main course',
+    calories: 1950, dietLabels: [],
+    extendedIngredients: [
+      { name: 'Runderlappen',  amount: 600, unit: 'g',    measures: { metric: { amount: 600, unitShort: 'g' } } },
+      { name: 'Ui',            amount: 3,   unit: 'stuks', measures: { metric: { amount: 3,   unitShort: 'stuks' } } },
+      { name: 'Rode kool',     amount: 500, unit: 'g',    measures: { metric: { amount: 500, unitShort: 'g' } } },
+      { name: 'Aardappelen',   amount: 700, unit: 'g',    measures: { metric: { amount: 700, unitShort: 'g' } } },
+      { name: 'Azijn',         amount: 2,   unit: 'el',   measures: { metric: { amount: 2,   unitShort: 'el' } } },
+      { name: 'Laurierblad',   amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
+    ],
+  },
+  // ── Italiaans ─────────────────────────────────────────
+  {
+    title: 'Risotto met champignons',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 40,
+    cuisineType: 'Italian', dishType: 'Main course',
+    calories: 1640, dietLabels: ['Vegetarisch'],
+    extendedIngredients: [
+      { name: 'Risottorijst',  amount: 320, unit: 'g',    measures: { metric: { amount: 320, unitShort: 'g' } } },
+      { name: 'Champignons',   amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Ui',            amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
+      { name: 'Knoflook',      amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
+      { name: 'Witte wijn',    amount: 100, unit: 'ml',   measures: { metric: { amount: 100, unitShort: 'ml' } } },
+      { name: 'Bouillon',      amount: 1,   unit: 'l',    measures: { metric: { amount: 1000, unitShort: 'ml' } } },
+      { name: 'Parmezaan',     amount: 80,  unit: 'g',    measures: { metric: { amount: 80,  unitShort: 'g' } } },
+      { name: 'Boter',         amount: 30,  unit: 'g',    measures: { metric: { amount: 30,  unitShort: 'g' } } },
+    ],
+  },
+  {
+    title: 'Spaghetti Bolognese',
+    dietTags: ['vlees'],
+    image: '', yield: 4, readyInMinutes: 50,
+    cuisineType: 'Italian', dishType: 'Main course',
+    calories: 2100, dietLabels: [],
+    extendedIngredients: [
+      { name: 'Spaghetti',     amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Rundergehakt',  amount: 500, unit: 'g',    measures: { metric: { amount: 500, unitShort: 'g' } } },
+      { name: 'Tomaten blik',  amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Ui',            amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
+      { name: 'Knoflook',      amount: 3,   unit: 'stuks', measures: { metric: { amount: 3,   unitShort: 'stuks' } } },
+      { name: 'Rode wijn',     amount: 100, unit: 'ml',   measures: { metric: { amount: 100, unitShort: 'ml' } } },
+      { name: 'Tomatenpuree',  amount: 2,   unit: 'el',   measures: { metric: { amount: 2,   unitShort: 'el' } } },
+    ],
+  },
+  {
+    title: 'Pizza Margherita',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 60,
+    cuisineType: 'Italian', dishType: 'Main course',
+    calories: 1800, dietLabels: ['Vegetarisch'],
+    extendedIngredients: [
+      { name: 'Pizzadeeg',     amount: 500, unit: 'g',    measures: { metric: { amount: 500, unitShort: 'g' } } },
+      { name: 'Tomatensaus',   amount: 200, unit: 'ml',   measures: { metric: { amount: 200, unitShort: 'ml' } } },
+      { name: 'Mozzarella',    amount: 250, unit: 'g',    measures: { metric: { amount: 250, unitShort: 'g' } } },
+      { name: 'Verse basilicum', amount: 1, unit: 'bosje', measures: { metric: { amount: 1,  unitShort: 'bosje' } } },
+      { name: 'Olijfolie',     amount: 2,   unit: 'el',   measures: { metric: { amount: 2,   unitShort: 'el' } } },
+    ],
+  },
+  // ── Aziatisch ─────────────────────────────────────────
+  {
+    title: 'Nasi Goreng',
+    dietTags: ['vlees'],
+    image: '', yield: 4, readyInMinutes: 25,
+    cuisineType: 'Asian', dishType: 'Main course',
+    calories: 1720, dietLabels: [],
+    extendedIngredients: [
+      { name: 'Rijst (gekookt)', amount: 600, unit: 'g',  measures: { metric: { amount: 600, unitShort: 'g' } } },
+      { name: 'Kipfilet',       amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+      { name: 'Eieren',         amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Trassi',         amount: 1,   unit: 'tl',  measures: { metric: { amount: 1,   unitShort: 'tl' } } },
+      { name: 'Ketjap manis',   amount: 3,   unit: 'el',  measures: { metric: { amount: 3,   unitShort: 'el' } } },
+      { name: 'Ui',             amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Knoflook',       amount: 3,   unit: 'stuks', measures: { metric: { amount: 3, unitShort: 'stuks' } } },
+    ],
+  },
+  {
+    title: 'Bami Goreng',
+    dietTags: ['vlees'],
+    image: '', yield: 4, readyInMinutes: 25,
+    cuisineType: 'Asian', dishType: 'Main course',
+    calories: 1680, dietLabels: [],
+    extendedIngredients: [
+      { name: 'Bamimie',        amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Kipfilet',       amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+      { name: 'Ei',             amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Ketjap manis',   amount: 3,   unit: 'el',  measures: { metric: { amount: 3,   unitShort: 'el' } } },
+      { name: 'Prei',           amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Ui',             amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Sambal',         amount: 1,   unit: 'tl',  measures: { metric: { amount: 1,   unitShort: 'tl' } } },
+    ],
+  },
+  {
+    title: 'Pad Thai',
+    dietTags: ['vis'],
+    image: '', yield: 4, readyInMinutes: 30,
+    cuisineType: 'Asian', dishType: 'Main course',
+    calories: 1900, dietLabels: [],
+    extendedIngredients: [
+      { name: 'Rijstnoedels',   amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+      { name: 'Garnalen',       amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Eieren',         amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Pinda\'s',       amount: 80,  unit: 'g',   measures: { metric: { amount: 80,  unitShort: 'g' } } },
+      { name: 'Vissaus',        amount: 3,   unit: 'el',  measures: { metric: { amount: 3,   unitShort: 'el' } } },
+      { name: 'Limoensap',      amount: 2,   unit: 'el',  measures: { metric: { amount: 2,   unitShort: 'el' } } },
+      { name: 'Tauge',          amount: 200, unit: 'g',   measures: { metric: { amount: 200, unitShort: 'g' } } },
+    ],
+  },
+  {
+    title: 'Thaise groene curry',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 30,
+    cuisineType: 'Asian', dishType: 'Main course',
+    calories: 1560, dietLabels: ['Vegetarisch'],
+    extendedIngredients: [
+      { name: 'Rijst',          amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+      { name: 'Kokosmelk',      amount: 400, unit: 'ml',  measures: { metric: { amount: 400, unitShort: 'ml' } } },
+      { name: 'Groene currypasta', amount: 2, unit: 'el', measures: { metric: { amount: 2,   unitShort: 'el' } } },
+      { name: 'Tofu',           amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+      { name: 'Paprika',        amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Courgette',      amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+    ],
+  },
+  // ── Vis ───────────────────────────────────────────────
+  {
+    title: 'Garnalenpasta',
+    dietTags: ['vis'],
+    image: '', yield: 4, readyInMinutes: 25,
+    cuisineType: 'Mediterranean', dishType: 'Main course',
+    calories: 1760, dietLabels: [],
+    extendedIngredients: [
+      { name: 'Pasta',          amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Garnalen',       amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Knoflook',       amount: 3,   unit: 'stuks', measures: { metric: { amount: 3, unitShort: 'stuks' } } },
+      { name: 'Citroen',        amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Peper',          amount: 1,   unit: 'tl',  measures: { metric: { amount: 1,   unitShort: 'tl' } } },
+      { name: 'Olijfolie',      amount: 3,   unit: 'el',  measures: { metric: { amount: 3,   unitShort: 'el' } } },
+      { name: 'Peterselie',     amount: 1,   unit: 'bosje', measures: { metric: { amount: 1, unitShort: 'bosje' } } },
+    ],
+  },
+  {
+    title: 'Forel met amandelen',
+    dietTags: ['vis'],
+    image: '', yield: 4, readyInMinutes: 25,
+    cuisineType: 'French', dishType: 'Main course',
+    calories: 1380, dietLabels: ['Glutenvrij'],
+    extendedIngredients: [
+      { name: 'Forelfilet',     amount: 600, unit: 'g',   measures: { metric: { amount: 600, unitShort: 'g' } } },
+      { name: 'Amandelen',      amount: 80,  unit: 'g',   measures: { metric: { amount: 80,  unitShort: 'g' } } },
+      { name: 'Boter',          amount: 50,  unit: 'g',   measures: { metric: { amount: 50,  unitShort: 'g' } } },
+      { name: 'Citroen',        amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Aardappelen',    amount: 600, unit: 'g',   measures: { metric: { amount: 600, unitShort: 'g' } } },
+    ],
+  },
+  {
+    title: 'Kabeljauw in tomatensaus',
+    dietTags: ['vis'],
+    image: '', yield: 4, readyInMinutes: 30,
+    cuisineType: 'Mediterranean', dishType: 'Main course',
+    calories: 1240, dietLabels: ['Glutenvrij'],
+    extendedIngredients: [
+      { name: 'Kabeljauwfilet', amount: 600, unit: 'g',   measures: { metric: { amount: 600, unitShort: 'g' } } },
+      { name: 'Tomaten blik',   amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Ui',             amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Knoflook',       amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Olijven',        amount: 80,  unit: 'g',   measures: { metric: { amount: 80,  unitShort: 'g' } } },
+      { name: 'Kappertjes',     amount: 2,   unit: 'el',  measures: { metric: { amount: 2,   unitShort: 'el' } } },
+      { name: 'Rijst',          amount: 280, unit: 'g',   measures: { metric: { amount: 280, unitShort: 'g' } } },
+    ],
+  },
+  // ── Midden-Oosten ─────────────────────────────────────
+  {
+    title: 'Shakshuka',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 30,
+    cuisineType: 'Middle Eastern', dishType: 'Breakfast',
+    calories: 920, dietLabels: ['Vegetarisch', 'Glutenvrij'],
+    extendedIngredients: [
+      { name: 'Eieren',         amount: 8,   unit: 'stuks', measures: { metric: { amount: 8, unitShort: 'stuks' } } },
+      { name: 'Tomaten blik',   amount: 800, unit: 'g',   measures: { metric: { amount: 800, unitShort: 'g' } } },
+      { name: 'Paprika',        amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Ui',             amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Knoflook',       amount: 3,   unit: 'stuks', measures: { metric: { amount: 3, unitShort: 'stuks' } } },
+      { name: 'Komijn',         amount: 1,   unit: 'tl',  measures: { metric: { amount: 1,   unitShort: 'tl' } } },
+      { name: 'Pitabrood',      amount: 4,   unit: 'stuks', measures: { metric: { amount: 4, unitShort: 'stuks' } } },
+    ],
+  },
+  {
+    title: 'Falafel met tzatziki',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 45,
+    cuisineType: 'Middle Eastern', dishType: 'Main course',
+    calories: 1680, dietLabels: ['Vegetarisch'],
+    extendedIngredients: [
+      { name: 'Kikkererwten',   amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Ui',             amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Knoflook',       amount: 3,   unit: 'stuks', measures: { metric: { amount: 3, unitShort: 'stuks' } } },
+      { name: 'Peterselie',     amount: 1,   unit: 'bosje', measures: { metric: { amount: 1, unitShort: 'bosje' } } },
+      { name: 'Komijn',         amount: 1,   unit: 'tl',  measures: { metric: { amount: 1,   unitShort: 'tl' } } },
+      { name: 'Griekse yoghurt', amount: 250, unit: 'g',  measures: { metric: { amount: 250, unitShort: 'g' } } },
+      { name: 'Komkommer',      amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Pitabrood',      amount: 4,   unit: 'stuks', measures: { metric: { amount: 4, unitShort: 'stuks' } } },
+    ],
+  },
+  {
+    title: 'Kip Tikka Masala',
+    dietTags: ['vlees'],
+    image: '', yield: 4, readyInMinutes: 45,
+    cuisineType: 'Indian', dishType: 'Main course',
+    calories: 2020, dietLabels: ['Glutenvrij'],
+    extendedIngredients: [
+      { name: 'Kipfilet',       amount: 600, unit: 'g',   measures: { metric: { amount: 600, unitShort: 'g' } } },
+      { name: 'Griekse yoghurt', amount: 150, unit: 'g',  measures: { metric: { amount: 150, unitShort: 'g' } } },
+      { name: 'Tomaten blik',   amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Slagroom',       amount: 200, unit: 'ml',  measures: { metric: { amount: 200, unitShort: 'ml' } } },
+      { name: 'Ui',             amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Knoflook',       amount: 3,   unit: 'stuks', measures: { metric: { amount: 3, unitShort: 'stuks' } } },
+      { name: 'Garam masala',   amount: 2,   unit: 'el',  measures: { metric: { amount: 2,   unitShort: 'el' } } },
+      { name: 'Rijst',          amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+    ],
+  },
+  // ── Soepen ────────────────────────────────────────────
+  {
+    title: 'Pompoensoep',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 40,
+    cuisineType: 'Dutch', dishType: 'Soup',
+    calories: 840, dietLabels: ['Vegetarisch', 'Glutenvrij'],
+    extendedIngredients: [
+      { name: 'Pompoen',        amount: 800, unit: 'g',   measures: { metric: { amount: 800, unitShort: 'g' } } },
+      { name: 'Ui',             amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Knoflook',       amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Kokosmelk',      amount: 200, unit: 'ml',  measures: { metric: { amount: 200, unitShort: 'ml' } } },
+      { name: 'Bouillon',       amount: 750, unit: 'ml',  measures: { metric: { amount: 750, unitShort: 'ml' } } },
+      { name: 'Gemalen kaneel', amount: 0.5, unit: 'tl',  measures: { metric: { amount: 0.5, unitShort: 'tl' } } },
+    ],
+  },
+  {
+    title: 'Minestrone',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 45,
+    cuisineType: 'Italian', dishType: 'Soup',
+    calories: 1040, dietLabels: ['Vegetarisch'],
+    extendedIngredients: [
+      { name: 'Tomaten blik',   amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Ui',             amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Wortel',         amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Bleekselderij',  amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Courgette',      amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Witte bonen',    amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Kleine pasta',   amount: 120, unit: 'g',   measures: { metric: { amount: 120, unitShort: 'g' } } },
+      { name: 'Bouillon',       amount: 1,   unit: 'l',   measures: { metric: { amount: 1000, unitShort: 'ml' } } },
+    ],
+  },
+  // ── Vegetarisch ───────────────────────────────────────
+  {
+    title: 'Chili sin carne',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 35,
+    cuisineType: 'Mexican', dishType: 'Main course',
+    calories: 1520, dietLabels: ['Vegetarisch', 'Veganistisch', 'Glutenvrij'],
+    extendedIngredients: [
+      { name: 'Rode bonen',     amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Kikkererwten',   amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Tomaten blik',   amount: 800, unit: 'g',   measures: { metric: { amount: 800, unitShort: 'g' } } },
+      { name: 'Ui',             amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Paprika',        amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Rijst',          amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+      { name: 'Chipotle pasta', amount: 1,   unit: 'el',  measures: { metric: { amount: 1,   unitShort: 'el' } } },
+    ],
+  },
+  {
+    title: 'Quiche met spinazie en feta',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 55,
+    cuisineType: 'French', dishType: 'Main course',
+    calories: 1820, dietLabels: ['Vegetarisch'],
+    extendedIngredients: [
+      { name: 'Quichedeeg',     amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+      { name: 'Spinazie',       amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+      { name: 'Feta',           amount: 150, unit: 'g',   measures: { metric: { amount: 150, unitShort: 'g' } } },
+      { name: 'Eieren',         amount: 3,   unit: 'stuks', measures: { metric: { amount: 3, unitShort: 'stuks' } } },
+      { name: 'Slagroom',       amount: 200, unit: 'ml',  measures: { metric: { amount: 200, unitShort: 'ml' } } },
+      { name: 'Ui',             amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+    ],
+  },
+  {
+    title: 'Zoete aardappel bowl',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 35,
+    cuisineType: 'American', dishType: 'Main course',
+    calories: 1640, dietLabels: ['Vegetarisch', 'Glutenvrij'],
+    extendedIngredients: [
+      { name: 'Zoete aardappel', amount: 800, unit: 'g',  measures: { metric: { amount: 800, unitShort: 'g' } } },
+      { name: 'Zwarte bonen',   amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Avocado',        amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Maïs',           amount: 200, unit: 'g',   measures: { metric: { amount: 200, unitShort: 'g' } } },
+      { name: 'Limoensap',      amount: 2,   unit: 'el',  measures: { metric: { amount: 2,   unitShort: 'el' } } },
+      { name: 'Griekse yoghurt', amount: 150, unit: 'g',  measures: { metric: { amount: 150, unitShort: 'g' } } },
+    ],
+  },
+  // ── Vlees extra ───────────────────────────────────────
+  {
+    title: 'Chili con carne',
+    dietTags: ['vlees'],
+    image: '', yield: 4, readyInMinutes: 50,
+    cuisineType: 'Mexican', dishType: 'Main course',
+    calories: 2080, dietLabels: ['Glutenvrij'],
+    extendedIngredients: [
+      { name: 'Rundergehakt',   amount: 500, unit: 'g',   measures: { metric: { amount: 500, unitShort: 'g' } } },
+      { name: 'Rode bonen',     amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Tomaten blik',   amount: 400, unit: 'g',   measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Ui',             amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Paprika',        amount: 1,   unit: 'stuks', measures: { metric: { amount: 1, unitShort: 'stuks' } } },
+      { name: 'Knoflook',       amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Rijst',          amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+    ],
+  },
+  {
+    title: 'Hamburgers met friet',
+    dietTags: ['vlees'],
+    image: '', yield: 4, readyInMinutes: 30,
+    cuisineType: 'American', dishType: 'Main course',
+    calories: 2680, dietLabels: [],
+    extendedIngredients: [
+      { name: 'Gehakt',         amount: 600, unit: 'g',   measures: { metric: { amount: 600, unitShort: 'g' } } },
+      { name: 'Hamburgerbroodjes', amount: 4, unit: 'stuks', measures: { metric: { amount: 4, unitShort: 'stuks' } } },
+      { name: 'Aardappelen',    amount: 800, unit: 'g',   measures: { metric: { amount: 800, unitShort: 'g' } } },
+      { name: 'Tomaat',         amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Sla',            amount: 100, unit: 'g',   measures: { metric: { amount: 100, unitShort: 'g' } } },
+      { name: 'Kaas plakken',   amount: 4,   unit: 'stuks', measures: { metric: { amount: 4, unitShort: 'stuks' } } },
+    ],
+  },
+  {
+    title: 'Kip met mosterd en tijm',
+    dietTags: ['vlees'],
+    image: '', yield: 4, readyInMinutes: 50,
+    cuisineType: 'French', dishType: 'Main course',
+    calories: 1860, dietLabels: ['Glutenvrij'],
+    extendedIngredients: [
+      { name: 'Kipstukken',     amount: 800, unit: 'g',   measures: { metric: { amount: 800, unitShort: 'g' } } },
+      { name: 'Mosterd',        amount: 3,   unit: 'el',  measures: { metric: { amount: 3,   unitShort: 'el' } } },
+      { name: 'Slagroom',       amount: 150, unit: 'ml',  measures: { metric: { amount: 150, unitShort: 'ml' } } },
+      { name: 'Knoflook',       amount: 3,   unit: 'stuks', measures: { metric: { amount: 3, unitShort: 'stuks' } } },
+      { name: 'Verse tijm',     amount: 4,   unit: 'takjes', measures: { metric: { amount: 4, unitShort: 'takjes' } } },
+      { name: 'Aardappelen',    amount: 700, unit: 'g',   measures: { metric: { amount: 700, unitShort: 'g' } } },
+    ],
+  },
+  {
+    title: 'Pulled pork wraps',
+    dietTags: ['vlees'],
+    image: '', yield: 4, readyInMinutes: 240,
+    cuisineType: 'American', dishType: 'Main course',
+    calories: 2340, dietLabels: [],
+    extendedIngredients: [
+      { name: 'Varkensschouder', amount: 800, unit: 'g',  measures: { metric: { amount: 800, unitShort: 'g' } } },
+      { name: 'Wraps',          amount: 8,   unit: 'stuks', measures: { metric: { amount: 8, unitShort: 'stuks' } } },
+      { name: 'BBQ saus',       amount: 150, unit: 'ml',  measures: { metric: { amount: 150, unitShort: 'ml' } } },
+      { name: 'Coleslaw mix',   amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+      { name: 'Paprikapoeder',  amount: 2,   unit: 'el',  measures: { metric: { amount: 2,   unitShort: 'el' } } },
+    ],
+  },
+  // ── Ontbijt / Licht ───────────────────────────────────
+  {
+    title: 'Pannenkoeken',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 30,
+    cuisineType: 'Dutch', dishType: 'Breakfast',
+    calories: 1480, dietLabels: ['Vegetarisch'],
+    extendedIngredients: [
+      { name: 'Bloem',          amount: 300, unit: 'g',   measures: { metric: { amount: 300, unitShort: 'g' } } },
+      { name: 'Eieren',         amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Melk',           amount: 500, unit: 'ml',  measures: { metric: { amount: 500, unitShort: 'ml' } } },
+      { name: 'Boter',          amount: 30,  unit: 'g',   measures: { metric: { amount: 30,  unitShort: 'g' } } },
+      { name: 'Stroop of jam',  amount: 4,   unit: 'el',  measures: { metric: { amount: 4,   unitShort: 'el' } } },
+    ],
+  },
+  {
+    title: 'Avocado toast met ei',
+    dietTags: ['vega'],
+    image: '', yield: 4, readyInMinutes: 15,
+    cuisineType: 'American', dishType: 'Breakfast',
+    calories: 960, dietLabels: ['Vegetarisch'],
+    extendedIngredients: [
+      { name: 'Brood',          amount: 8,   unit: 'sneden', measures: { metric: { amount: 8, unitShort: 'sneden' } } },
+      { name: 'Avocado',        amount: 2,   unit: 'stuks', measures: { metric: { amount: 2, unitShort: 'stuks' } } },
+      { name: 'Eieren',         amount: 4,   unit: 'stuks', measures: { metric: { amount: 4, unitShort: 'stuks' } } },
+      { name: 'Citroen',        amount: 0.5, unit: 'stuks', measures: { metric: { amount: 0.5, unitShort: 'stuks' } } },
+      { name: 'Chilivlokken',   amount: 1,   unit: 'tl',  measures: { metric: { amount: 1,   unitShort: 'tl' } } },
     ],
   },
 ];
@@ -1516,14 +1955,24 @@ function renderRecipeLoading() {
 // Normaliseer Edamam hit naar intern formaat
 function normalizeEdamam(hit) {
   const r = hit.recipe;
+  const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
   return {
-    title:          r.label,
-    image:          r.image,
+    title:          r.label || '',
+    image:          r.image || '',
+    source:         r.source || '',
+    sourceUrl:      r.url   || '',
+    yield:          r.yield || 4,
     readyInMinutes: r.totalTime || null,
+    cuisineType:    (r.cuisineType  || []).map(cap).join(', '),
+    mealType:       (r.mealType    || []).map(cap).join(', '),
+    dishType:       (r.dishType    || []).map(cap).join(', '),
+    dietLabels:     r.dietLabels   || [],
+    healthLabels:   r.healthLabels || [],
+    calories:       r.calories     ? Math.round(r.calories) : null,
     extendedIngredients: (r.ingredients || []).map(ing => ({
-      name:     ing.food || ing.text,
-      amount:   ing.quantity || ing.weight || 1,
-      unit:     ing.measure || '',
+      name:     ing.food || ing.text || '',
+      amount:   ing.quantity || 1,
+      unit:     ing.measure  || '',
       measures: { metric: { amount: ing.weight || ing.quantity || 1, unitShort: 'g' } },
     })),
   };
@@ -1554,7 +2003,7 @@ async function searchRecipes(query) {
       .map(f => `&health=${healthMap[f]}`)
       .join('');
     const res = await fetch(
-      `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(query)}&app_id=${EDAMAM_APP_ID}&app_key=${EDAMAM_APP_KEY}&field=label&field=image&field=totalTime&field=ingredients${healthParam}`
+      `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(query)}&app_id=${EDAMAM_APP_ID}&app_key=${EDAMAM_APP_KEY}&field=label&field=image&field=source&field=url&field=yield&field=totalTime&field=cuisineType&field=mealType&field=dishType&field=dietLabels&field=healthLabels&field=calories&field=ingredients${healthParam}`
     );
     if (!res.ok) throw new Error('Edamam ' + res.status);
     const data = await res.json();
@@ -1574,38 +2023,77 @@ function renderRecipeResults(recipes) {
     rc.innerHTML = '<p class="recipe-hint">Geen recepten gevonden. Probeer een andere zoekterm.</p>';
     return;
   }
-  rc.innerHTML = recipes.map(r => {
-    const ingCount = (r.extendedIngredients || []).length || r.usedIngredientCount || '?';
+  rc.innerHTML = recipes.map((r, i) => {
     const thumb = r.image
       ? `<img class="recipe-thumb" src="${esc(r.image)}" alt="" loading="lazy">`
       : `<div class="recipe-thumb recipe-thumb--empty">🍽️</div>`;
-    return `<div class="recipe-card" data-id="${r.id}">
+    const metaParts = [
+      r.readyInMinutes ? `⏱ ${r.readyInMinutes} min` : '',
+      r.cuisineType || '',
+      r.dishType    || '',
+    ].filter(Boolean);
+    return `<div class="recipe-card" data-i="${i}">
       ${thumb}
       <div class="recipe-card-body">
         <div class="recipe-title">${esc(r.title)}</div>
-        <div class="recipe-meta">${ingCount} ingrediënten</div>
+        <div class="recipe-meta">${esc(metaParts.join(' · ')) || (r.extendedIngredients||[]).length + ' ingrediënten'}</div>
       </div>
       <svg class="recipe-arrow" viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.5" width="6" height="10"><polyline points="2 18 10 10 2 2"/></svg>
     </div>`;
   }).join('');
 
-  rc.querySelectorAll('.recipe-card').forEach((el, i) => {
-    el.addEventListener('click', () => renderRecipeDetail(recipes[i]));
+  rc.querySelectorAll('.recipe-card').forEach(el => {
+    el.addEventListener('click', () => renderRecipeDetail(recipes[+el.dataset.i]));
   });
 }
 
 function renderRecipeDetail(recipe) {
   const rc = document.getElementById('recipeContent');
+  const list = activeList();
+  const persons = list?.persons || 4;
+  const base = recipe.yield || 4;
+  const scale = persons / base;
+
   const ings = (recipe.extendedIngredients || []).map(ing => {
     const p = parseIngredient(ing);
-    const qtyStr = p.unit && p.unit !== 'stuks' ? `${p.qty} ${esc(p.unit)}` : `${p.qty}×`;
+    const scaled = Math.round((p.qty || 1) * scale * 10) / 10;
+    const qtyStr = p.unit && p.unit !== 'stuks' ? `${scaled} ${esc(p.unit)}` : `${scaled}×`;
     return `<div class="recipe-ing-row"><span class="recipe-ing-qty">${qtyStr}</span><span class="recipe-ing-name">${esc(p.name)}</span></div>`;
   }).join('');
 
+  const imgHtml = recipe.image
+    ? `<img class="recipe-detail-img" src="${esc(recipe.image)}" alt="${esc(recipe.title)}" loading="lazy">`
+    : '';
+
+  const metaParts = [
+    recipe.readyInMinutes ? `⏱ ${recipe.readyInMinutes} min` : '',
+    `👤 ${persons} pers.`,
+    recipe.cuisineType ? recipe.cuisineType : '',
+    recipe.dishType    ? recipe.dishType    : '',
+    recipe.calories    ? `${Math.round(recipe.calories / base * persons)} kcal` : '',
+  ].filter(Boolean);
+
+  const dietBadges = (recipe.dietLabels || []).map(d =>
+    `<span class="recipe-diet-label">${esc(d)}</span>`
+  ).join('');
+
+  const sourceHtml = recipe.sourceUrl
+    ? `<a class="recipe-source-link" href="${esc(recipe.sourceUrl)}" target="_blank" rel="noopener">
+        Volledig recept op ${esc(recipe.source || 'bron')} ↗
+      </a>`
+    : '';
+
   rc.innerHTML = `
     <button class="recipe-back-btn" id="btnRecipeBack">← Terug</button>
-    <div class="recipe-detail-title">${esc(recipe.title)}</div>
+    ${imgHtml}
+    <div class="recipe-detail-header">
+      <div class="recipe-detail-title">${esc(recipe.title)}</div>
+      <div class="recipe-detail-meta">${esc(metaParts.join(' · '))}</div>
+      ${dietBadges ? `<div class="recipe-diet-labels">${dietBadges}</div>` : ''}
+    </div>
+    <div class="recipe-ing-header">Ingrediënten voor ${persons} personen</div>
     <div class="recipe-ing-list">${ings || '<p class="recipe-hint">Geen ingrediënten beschikbaar.</p>'}</div>
+    ${sourceHtml}
     <button class="recipe-add-all-btn" id="btnAddAllIngredients">Voeg toe aan lijst</button>`;
 
   document.getElementById('btnRecipeBack').addEventListener('click', () => {
