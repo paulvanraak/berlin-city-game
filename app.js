@@ -45,9 +45,12 @@ const FIREBASE_CONFIG = {
 };
 
 // ══════════════════════════════════════════════════════
-// SPOONACULAR API KEY — vul in na aanmelden op spoonacular.com
+// RECEPT API KEYS — vul in wat je hebt; de app probeert Spoonacular eerst,
+// dan Edamam als fallback. Één is genoeg, twee is beter.
 // ══════════════════════════════════════════════════════
-const SPOONACULAR_KEY = '';
+const SPOONACULAR_KEY = '';          // spoonacular.com/food-api  (150/dag gratis)
+const EDAMAM_APP_ID  = '';           // developer.edamam.com      (10.000/maand gratis)
+const EDAMAM_APP_KEY = '';
 
 const CACHE_TTL = 24 * 60 * 60 * 1000;
 
@@ -1232,16 +1235,14 @@ const cloud = (() => {
 // SPOONACULAR RECEPT FUNCTIES
 // ══════════════════════════════════════════════════════
 
+const recipeApiAvailable = () => SPOONACULAR_KEY || (EDAMAM_APP_ID && EDAMAM_APP_KEY);
+
 function openRecipeSheet() {
-  const sheet = document.getElementById('recipeSheet');
-  sheet.classList.add('open');
+  document.getElementById('recipeSheet').classList.add('open');
   document.getElementById('recipeInput').value = '';
-  const rc = document.getElementById('recipeContent');
-  if (!SPOONACULAR_KEY) {
-    rc.innerHTML = '<p class="recipe-hint">Stel Spoonacular API in om recepten te zoeken.</p>';
-  } else {
-    rc.innerHTML = '<p class="recipe-hint">Zoek een gerecht om ingrediënten automatisch aan je lijst toe te voegen.</p>';
-  }
+  document.getElementById('recipeContent').innerHTML = recipeApiAvailable()
+    ? '<p class="recipe-hint">Zoek een gerecht om ingrediënten automatisch aan je lijst toe te voegen.</p>'
+    : '<p class="recipe-hint">Stel een recept-API in (Spoonacular of Edamam) om recepten te zoeken.</p>';
 }
 
 function closeRecipeSheet() {
@@ -1249,24 +1250,64 @@ function closeRecipeSheet() {
 }
 
 function renderRecipeLoading() {
-  document.getElementById('recipeContent').innerHTML =
-    '<div class="recipe-loading">Laden…</div>';
+  document.getElementById('recipeContent').innerHTML = '<div class="recipe-loading">Laden…</div>';
 }
 
+// Normaliseer een Edamam hit naar het interne recept-formaat (zelfde als Spoonacular)
+function normalizeEdamam(hit) {
+  const r = hit.recipe;
+  return {
+    title:   r.label,
+    image:   r.image,
+    readyInMinutes: r.totalTime || null,
+    extendedIngredients: (r.ingredients || []).map(ing => ({
+      name:   ing.food || ing.text,
+      amount: ing.quantity || ing.weight || 1,
+      unit:   ing.measure || '',
+      measures: { metric: { amount: ing.weight || ing.quantity || 1, unitShort: 'g' } },
+    })),
+  };
+}
+
+// Probeer Spoonacular, val terug op Edamam als dat mislukt of leeg is
 async function searchRecipes(query) {
-  if (!SPOONACULAR_KEY) return;
-  if (!query.trim()) return;
+  if (!recipeApiAvailable() || !query.trim()) return;
   renderRecipeLoading();
-  try {
-    const url = `https://api.spoonacular.com/recipes/complexSearch?query=${encodeURIComponent(query)}&number=8&addRecipeInformation=true&language=nl&apiKey=${SPOONACULAR_KEY}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error('API fout: ' + res.status);
-    const data = await res.json();
-    renderRecipeResults(data.results || []);
-  } catch (e) {
-    document.getElementById('recipeContent').innerHTML =
-      `<p class="recipe-hint" style="color:var(--red)">Fout bij laden: ${esc(e.message)}</p>`;
+
+  // ── Spoonacular ──────────────────────────────────────
+  if (SPOONACULAR_KEY) {
+    try {
+      const res = await fetch(
+        `https://api.spoonacular.com/recipes/complexSearch?query=${encodeURIComponent(query)}&number=8&addRecipeInformation=true&language=nl&apiKey=${SPOONACULAR_KEY}`
+      );
+      if (res.ok) {
+        const data = await res.json();
+        if (data.results?.length) { renderRecipeResults(data.results); return; }
+      }
+      // 402/429 = quotum op → doorvallen naar Edamam
+    } catch { /* doorvallen */ }
   }
+
+  // ── Edamam (fallback of primair als alleen Edamam is ingesteld) ─────────
+  if (EDAMAM_APP_ID && EDAMAM_APP_KEY) {
+    try {
+      const res = await fetch(
+        `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(query)}&app_id=${EDAMAM_APP_ID}&app_key=${EDAMAM_APP_KEY}&field=label&field=image&field=totalTime&field=ingredients`
+      );
+      if (!res.ok) throw new Error('Edamam ' + res.status);
+      const data = await res.json();
+      const recipes = (data.hits || []).map(normalizeEdamam);
+      renderRecipeResults(recipes);
+      return;
+    } catch (e) {
+      document.getElementById('recipeContent').innerHTML =
+        `<p class="recipe-hint" style="color:var(--red)">Fout bij laden: ${esc(e.message)}</p>`;
+      return;
+    }
+  }
+
+  document.getElementById('recipeContent').innerHTML =
+    '<p class="recipe-hint">Geen resultaten gevonden. Probeer een andere zoekterm.</p>';
 }
 
 function renderRecipeResults(recipes) {
