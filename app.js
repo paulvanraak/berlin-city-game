@@ -1233,12 +1233,130 @@ const cloud = (() => {
 // EDAMAM RECEPT FUNCTIES
 // ══════════════════════════════════════════════════════
 
+// ── Demo recepten (actief zolang EDAMAM_APP_ID leeg is) ────────────────────
+const DEMO_RECIPES = [
+  {
+    title: 'Pasta Carbonara',
+    image: '',
+    readyInMinutes: 25,
+    extendedIngredients: [
+      { name: 'Spaghetti',     amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Spek',          amount: 150, unit: 'g',    measures: { metric: { amount: 150, unitShort: 'g' } } },
+      { name: 'Eieren',        amount: 4,   unit: 'stuks', measures: { metric: { amount: 4,   unitShort: 'stuks' } } },
+      { name: 'Parmezaan',     amount: 80,  unit: 'g',    measures: { metric: { amount: 80,  unitShort: 'g' } } },
+      { name: 'Knoflook',      amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
+    ],
+  },
+  {
+    title: 'Kipfilet met groenten',
+    image: '',
+    readyInMinutes: 35,
+    extendedIngredients: [
+      { name: 'Kipfilet',      amount: 500, unit: 'g',    measures: { metric: { amount: 500, unitShort: 'g' } } },
+      { name: 'Paprika',       amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
+      { name: 'Courgette',     amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
+      { name: 'Olijfolie',     amount: 3,   unit: 'el',   measures: { metric: { amount: 3,   unitShort: 'el' } } },
+      { name: 'Knoflook',      amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
+      { name: 'Rijst',         amount: 300, unit: 'g',    measures: { metric: { amount: 300, unitShort: 'g' } } },
+    ],
+  },
+  {
+    title: 'Tomatensoep',
+    image: '',
+    readyInMinutes: 30,
+    extendedIngredients: [
+      { name: 'Tomaten',       amount: 800, unit: 'g',    measures: { metric: { amount: 800, unitShort: 'g' } } },
+      { name: 'Ui',            amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
+      { name: 'Knoflook',      amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
+      { name: 'Bouillon',      amount: 1,   unit: 'l',    measures: { metric: { amount: 1000, unitShort: 'ml' } } },
+      { name: 'Tomatenpuree',  amount: 2,   unit: 'el',   measures: { metric: { amount: 2,   unitShort: 'el' } } },
+      { name: 'Slagroom',      amount: 100, unit: 'ml',   measures: { metric: { amount: 100, unitShort: 'ml' } } },
+    ],
+  },
+  {
+    title: 'Gehaktballen in tomatensaus',
+    image: '',
+    readyInMinutes: 40,
+    extendedIngredients: [
+      { name: 'Gehakt',        amount: 500, unit: 'g',    measures: { metric: { amount: 500, unitShort: 'g' } } },
+      { name: 'Ui',            amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
+      { name: 'Tomaten blik',  amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Tomatenpuree',  amount: 2,   unit: 'el',   measures: { metric: { amount: 2,   unitShort: 'el' } } },
+      { name: 'Ei',            amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
+      { name: 'Aardappelen',   amount: 600, unit: 'g',    measures: { metric: { amount: 600, unitShort: 'g' } } },
+    ],
+  },
+  {
+    title: 'Griekse salade',
+    image: '',
+    readyInMinutes: 15,
+    extendedIngredients: [
+      { name: 'Komkommer',     amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
+      { name: 'Tomaten',       amount: 300, unit: 'g',    measures: { metric: { amount: 300, unitShort: 'g' } } },
+      { name: 'Feta',          amount: 200, unit: 'g',    measures: { metric: { amount: 200, unitShort: 'g' } } },
+      { name: 'Rode ui',       amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
+      { name: 'Olijfolie',     amount: 4,   unit: 'el',   measures: { metric: { amount: 4,   unitShort: 'el' } } },
+    ],
+  },
+  {
+    title: 'Roerbakschotel met noedels',
+    image: '',
+    readyInMinutes: 20,
+    extendedIngredients: [
+      { name: 'Kipfilet',      amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Pasta',         amount: 250, unit: 'g',    measures: { metric: { amount: 250, unitShort: 'g' } } },
+      { name: 'Paprika',       amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
+      { name: 'Champignons',   amount: 200, unit: 'g',    measures: { metric: { amount: 200, unitShort: 'g' } } },
+      { name: 'Sojasaus',      amount: 3,   unit: 'el',   measures: { metric: { amount: 3,   unitShort: 'el' } } },
+      { name: 'Knoflook',      amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
+    ],
+  },
+  {
+    title: 'Stamppot boerenkool',
+    image: '',
+    readyInMinutes: 45,
+    extendedIngredients: [
+      { name: 'Aardappelen',   amount: 800, unit: 'g',    measures: { metric: { amount: 800, unitShort: 'g' } } },
+      { name: 'Boerenkool',    amount: 500, unit: 'g',    measures: { metric: { amount: 500, unitShort: 'g' } } },
+      { name: 'Rookworst',     amount: 1,   unit: 'stuks', measures: { metric: { amount: 1,   unitShort: 'stuks' } } },
+      { name: 'Boter',         amount: 50,  unit: 'g',    measures: { metric: { amount: 50,  unitShort: 'g' } } },
+      { name: 'Melk',          amount: 100, unit: 'ml',   measures: { metric: { amount: 100, unitShort: 'ml' } } },
+    ],
+  },
+  {
+    title: 'Lasagne',
+    image: '',
+    readyInMinutes: 60,
+    extendedIngredients: [
+      { name: 'Gehakt',        amount: 500, unit: 'g',    measures: { metric: { amount: 500, unitShort: 'g' } } },
+      { name: 'Lasagnebladen', amount: 250, unit: 'g',    measures: { metric: { amount: 250, unitShort: 'g' } } },
+      { name: 'Tomaten blik',  amount: 400, unit: 'g',    measures: { metric: { amount: 400, unitShort: 'g' } } },
+      { name: 'Ui',            amount: 2,   unit: 'stuks', measures: { metric: { amount: 2,   unitShort: 'stuks' } } },
+      { name: 'Kaas',          amount: 150, unit: 'g',    measures: { metric: { amount: 150, unitShort: 'g' } } },
+      { name: 'Melk',          amount: 500, unit: 'ml',   measures: { metric: { amount: 500, unitShort: 'ml' } } },
+      { name: 'Boter',         amount: 40,  unit: 'g',    measures: { metric: { amount: 40,  unitShort: 'g' } } },
+      { name: 'Bloem',         amount: 40,  unit: 'g',    measures: { metric: { amount: 40,  unitShort: 'g' } } },
+    ],
+  },
+];
+
+function searchDemoRecipes(query) {
+  const q = query.toLowerCase();
+  return DEMO_RECIPES.filter(r =>
+    r.title.toLowerCase().includes(q) ||
+    r.extendedIngredients.some(i => i.name.toLowerCase().includes(q))
+  );
+}
+
 function openRecipeSheet() {
   document.getElementById('recipeSheet').classList.add('open');
   document.getElementById('recipeInput').value = '';
-  document.getElementById('recipeContent').innerHTML = (EDAMAM_APP_ID && EDAMAM_APP_KEY)
-    ? '<p class="recipe-hint">Zoek een gerecht om ingrediënten automatisch aan je lijst toe te voegen.</p>'
-    : '<p class="recipe-hint">Stel <code>EDAMAM_APP_ID</code> en <code>EDAMAM_APP_KEY</code> in app.js in om recepten te zoeken.</p>';
+  const isDemo = !EDAMAM_APP_ID || !EDAMAM_APP_KEY;
+  document.getElementById('recipeContent').innerHTML = `<p class="recipe-hint">${
+    isDemo
+      ? '🧪 Demo-modus — zoek bijv. "pasta", "kip" of "soep". Vervang door Edamam-sleutels voor echte recepten.'
+      : 'Zoek een gerecht om ingrediënten automatisch aan je lijst toe te voegen.'
+  }</p>`;
 }
 
 function closeRecipeSheet() {
@@ -1266,15 +1384,27 @@ function normalizeEdamam(hit) {
 }
 
 async function searchRecipes(query) {
-  if (!EDAMAM_APP_ID || !EDAMAM_APP_KEY || !query.trim()) return;
+  if (!query.trim()) return;
   renderRecipeLoading();
+
+  // Demo-modus: geen API-sleutels ingesteld
+  if (!EDAMAM_APP_ID || !EDAMAM_APP_KEY) {
+    await new Promise(r => setTimeout(r, 400)); // korte kunstmatige vertraging
+    const results = searchDemoRecipes(query);
+    if (results.length) renderRecipeResults(results);
+    else document.getElementById('recipeContent').innerHTML =
+      '<p class="recipe-hint">Geen demo-recepten gevonden. Probeer "pasta", "kip", "soep" of "stamppot".</p>';
+    return;
+  }
+
+  // Edamam live
   try {
     const res = await fetch(
       `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(query)}&app_id=${EDAMAM_APP_ID}&app_key=${EDAMAM_APP_KEY}&field=label&field=image&field=totalTime&field=ingredients`
     );
     if (!res.ok) throw new Error('Edamam ' + res.status);
-    const data  = await res.json();
-    const hits  = (data.hits || []).map(normalizeEdamam);
+    const data = await res.json();
+    const hits = (data.hits || []).map(normalizeEdamam);
     if (hits.length) renderRecipeResults(hits);
     else document.getElementById('recipeContent').innerHTML =
       '<p class="recipe-hint">Geen recepten gevonden. Probeer een andere zoekterm.</p>';
