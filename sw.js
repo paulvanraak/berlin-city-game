@@ -1,4 +1,4 @@
-const CACHE = 'mandje-v4';
+const CACHE = 'mandje-v5';
 const BASE  = '/berlin-city-game';
 const ASSETS = [
   BASE + '/',
